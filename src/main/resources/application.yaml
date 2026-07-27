@@ -3,7 +3,7 @@ spring:
     name: task_management
 
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://postgres:5432/mydatabase}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://postgres:5432/task_database}
     username: ${SPRING_DATASOURCE_USERNAME:myuser}
     password: ${SPRING_DATASOURCE_PASSWORD:secret}
     driver-class-name: org.postgresql.Driver
@@ -27,3 +27,13 @@ logging:
   level:
     org.springframework.jdbc: INFO
     org.hibernate.SQL: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+
+    

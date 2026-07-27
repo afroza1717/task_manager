@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
 
 public class HelperUtils {
     public static final String IMAGE_UPLOAD_DIRECTORY = "\\wingbangla\\uploads\\wingbangla-ecom\\images\\";
-    public static final String SUCCESS_MESSAGE = "data";
+    public static final String SUCCESS_MESSAGE = "Successfully deleted the record.";
     public static final String ERROR_MESSAGE = "error";
     public static final String DATA_TOKEN = "token";
     public static final String ERROR = "error.message";
@@ -55,8 +55,8 @@ public class HelperUtils {
     }
 
     public static String getRandomString(int length) {
-//		byte[] array = new byte[length]; // length is bounded by 7
-//		new Random().nextBytes(array);
+        // byte[] array = new byte[length]; // length is bounded by 7
+        // new Random().nextBytes(array);
         // String generatedString = new String(array, Charset.forName("UTF-8"));
         String generatedString = Integer.valueOf(getRandomNumber(111111, 999999)).toString();
         return generatedString;
@@ -116,56 +116,60 @@ public class HelperUtils {
         return false;
     }
 
-//   public static HttpHeaders createHttpHeaders() {
-//      HttpHeaders headers = new HttpHeaders();
-//      try {
-//         headers.setContentType(MediaType.APPLICATION_JSON);
-//         // String authorizationToken = getAuthorizationToken(user, password);
-//
-//         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
-//            .getRequest();
-//         HttpSession session = request.getSession();
-//         String authorizationToken = (String) session.getAttribute("authorizationToken");
-//         headers.add("Authorization", authorizationToken);
-//      } catch (Exception e) {
-//         e.printStackTrace();
-//      }
-//
-//      return headers;
-//   }
+    // public static HttpHeaders createHttpHeaders() {
+    // HttpHeaders headers = new HttpHeaders();
+    // try {
+    // headers.setContentType(MediaType.APPLICATION_JSON);
+    // // String authorizationToken = getAuthorizationToken(user, password);
+    //
+    // HttpServletRequest request = ((ServletRequestAttributes)
+    // RequestContextHolder.currentRequestAttributes())
+    // .getRequest();
+    // HttpSession session = request.getSession();
+    // String authorizationToken = (String)
+    // session.getAttribute("authorizationToken");
+    // headers.add("Authorization", authorizationToken);
+    // } catch (Exception e) {
+    // e.printStackTrace();
+    // }
+    //
+    // return headers;
+    // }
 
-//   public static String getAuthorizationToken(String user, String password) {
-//      RestTemplate restTemplate = new RestTemplate();
-//      String apiUrl = ApplicationProperties.INSTANCE.getValueFromPropertiesKey("api.url");
-//      String authenticateUrl = apiUrl + "authenticate";
-//      String authorizationToken = new String("");
-//      HttpHeaders headers = new HttpHeaders();
-//
-//      // Tasks tasks = restTemplate.getForObject(tasksUrl, Tasks.class);
-//      try {
-//         // HttpHeaders headers = new HttpHeaders();
-//         headers.setContentType(MediaType.APPLICATION_JSON);
-//
-//         JSONObject personJsonObject = new JSONObject();
-//         personJsonObject.put("username", user);
-//         personJsonObject.put("password", password);
-//
-//         HttpEntity<String> request = new HttpEntity<String>(personJsonObject.toString(), headers);
-//
-//         ResponseEntity<LinkedHashMap> responseEntityStr = restTemplate.postForEntity(authenticateUrl, request,
-//            LinkedHashMap.class);
-//
-//         authorizationToken = "Bearer " + responseEntityStr.getBody().get("id_token");
-//
-//         // JsonNode root = objectMapper.readTree(responseEntityStr.getBody());
-//
-//      } catch (Exception e) {
-//         e.printStackTrace();
-//      }
-//
-//      return authorizationToken;
-//   }
-
+    // public static String getAuthorizationToken(String user, String password) {
+    // RestTemplate restTemplate = new RestTemplate();
+    // String apiUrl =
+    // ApplicationProperties.INSTANCE.getValueFromPropertiesKey("api.url");
+    // String authenticateUrl = apiUrl + "authenticate";
+    // String authorizationToken = new String("");
+    // HttpHeaders headers = new HttpHeaders();
+    //
+    // // Tasks tasks = restTemplate.getForObject(tasksUrl, Tasks.class);
+    // try {
+    // // HttpHeaders headers = new HttpHeaders();
+    // headers.setContentType(MediaType.APPLICATION_JSON);
+    //
+    // JSONObject personJsonObject = new JSONObject();
+    // personJsonObject.put("username", user);
+    // personJsonObject.put("password", password);
+    //
+    // HttpEntity<String> request = new
+    // HttpEntity<String>(personJsonObject.toString(), headers);
+    //
+    // ResponseEntity<LinkedHashMap> responseEntityStr =
+    // restTemplate.postForEntity(authenticateUrl, request,
+    // LinkedHashMap.class);
+    //
+    // authorizationToken = "Bearer " + responseEntityStr.getBody().get("id_token");
+    //
+    // // JsonNode root = objectMapper.readTree(responseEntityStr.getBody());
+    //
+    // } catch (Exception e) {
+    // e.printStackTrace();
+    // }
+    //
+    // return authorizationToken;
+    // }
 
     /**
      * Check whether IsEmpty o is empty.
@@ -231,7 +235,7 @@ public class HelperUtils {
     }
 
     public static String getRandomColor() {
-        String[] letters = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
+        String[] letters = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
         String color = "#";
         for (int i = 0; i < 6; i++) {
             color += letters[(int) Math.round(Math.random() * 15)];
@@ -348,7 +352,6 @@ public class HelperUtils {
 
         return date;
     }
-
 
     public static Timestamp getTimestampFromDate(Date dateValue) {
         Timestamp date = new Timestamp(dateValue.getTime());
@@ -515,7 +518,6 @@ public class HelperUtils {
         year = (long) cal.get(Calendar.YEAR);
         return year;
     }
-
 
     public static int getMonthWithoutFormat(Timestamp date) {
         long timestamp = date.getTime();
@@ -747,21 +749,21 @@ public class HelperUtils {
 
         return calendar;
 
-//      // Now, you can work with the Calendar object
-//      int year = calendar.get(Calendar.YEAR);
-//      int month = calendar.get(Calendar.MONTH) + 1; // Month is zero-based, so adding 1
-//      int day = calendar.get(Calendar.DAY_OF_MONTH);
-//      int hour = calendar.get(Calendar.HOUR_OF_DAY);
-//      int minute = calendar.get(Calendar.MINUTE);
-//      int second = calendar.get(Calendar.SECOND);
-//
-//      System.out.println("Year: " + year);
-//      System.out.println("Month: " + month);
-//      System.out.println("Day: " + day);
-//      System.out.println("Hour: " + hour);
-//      System.out.println("Minute: " + minute);
-//      System.out.println("Second: " + second);
-
+        // // Now, you can work with the Calendar object
+        // int year = calendar.get(Calendar.YEAR);
+        // int month = calendar.get(Calendar.MONTH) + 1; // Month is zero-based, so
+        // adding 1
+        // int day = calendar.get(Calendar.DAY_OF_MONTH);
+        // int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        // int minute = calendar.get(Calendar.MINUTE);
+        // int second = calendar.get(Calendar.SECOND);
+        //
+        // System.out.println("Year: " + year);
+        // System.out.println("Month: " + month);
+        // System.out.println("Day: " + day);
+        // System.out.println("Hour: " + hour);
+        // System.out.println("Minute: " + minute);
+        // System.out.println("Second: " + second);
 
     }
 
@@ -785,7 +787,7 @@ public class HelperUtils {
     }
 
     public static String convertStringIntoMathematicalExpression(String expression) {
-        //String expression = "2+0*8";
+        // String expression = "2+0*8";
         ScriptEngineManager manager1 = new ScriptEngineManager();
 
         for (ScriptEngineFactory engineFactory : manager1.getEngineFactories()) {
@@ -795,7 +797,6 @@ public class HelperUtils {
             logger.info("Language Version: " + engineFactory.getLanguageVersion());
             logger.info("-----");
         }
-
 
         Object result = "";
         try {
@@ -826,7 +827,8 @@ public class HelperUtils {
 
             if (Character.isDigit(ch)) {
                 StringBuilder number = new StringBuilder();
-                while (i < expression.length() && (Character.isDigit(expression.charAt(i)) || expression.charAt(i) == '.')) {
+                while (i < expression.length()
+                        && (Character.isDigit(expression.charAt(i)) || expression.charAt(i) == '.')) {
                     number.append(expression.charAt(i));
                     i++;
                 }
@@ -897,9 +899,7 @@ public class HelperUtils {
         }
     }
 
-
-    //graal.js
-
+    // graal.js
 
     public static Double limitPrecision(Double value, int maxDigitsAfterDecimal) {
         Double truncated = null;
@@ -934,6 +934,5 @@ public class HelperUtils {
         Date shipmentDate = Date.valueOf(newDateString.toString());
         return shipmentDate;
     }
-
 
 }
