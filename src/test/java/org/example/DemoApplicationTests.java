@@ -27,10 +27,12 @@ class DemoApplicationTests {
         }
 
         @Container
-        static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16")
+        @SuppressWarnings("resource")
+        static final PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16")
                         .withDatabaseName("task_database")
                         .withUsername("myuser")
-                        .withPassword("secret");
+                        .withPassword("secret")
+                        .withReuse(true);
 
         @DynamicPropertySource
         static void configureProperties(DynamicPropertyRegistry registry) {
