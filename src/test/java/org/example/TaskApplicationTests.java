@@ -17,7 +17,7 @@ import org.example.manager.taskManager.TaskRepository;
 
 @SpringBootTest
 @Testcontainers
-class DemoApplicationTests {
+class TaskApplicationTests {
 
         @Autowired
         private TaskRepository repository;
