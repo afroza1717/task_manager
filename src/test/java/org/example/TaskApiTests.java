@@ -23,9 +23,10 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @AutoConfigureMockMvc
 @WebMvcTest(TaskApi.class)
@@ -56,7 +57,7 @@ class TaskApiTests {
 
                 mockMvc.perform(post("/create_task")
                                 .contentType(MediaType.APPLICATION_JSON)
-                                //.content("{\"title\":\"Docker\",\"author\":\"Syeda\",\"description\":\"Testing\",\"status\":\"Pending\"}"))
+                                // .content("{\"title\":\"Docker\",\"author\":\"Syeda\",\"description\":\"Testing\",\"status\":\"Pending\"}"))
                                 .content(objectMapper.writeValueAsString(task)))
                                 .andExpect(status().isOk())
                                 .andExpect(jsonPath("$.title").value("Docker"))
@@ -99,5 +100,42 @@ class TaskApiTests {
                                 .andExpect(jsonPath("$.length()").value(2));
 
                 verify(taskRepository).findAll();
+        }
+
+        ///partial_update/{taskId}/
+        @Test
+        void shouldUpdateTask() throws Exception {
+
+                Task task = new Task();
+                task.setId(1L);
+                task.setTitle("Updated");
+                task.setStatus("In Progress");
+                task.setDescription("Testing Updated");
+
+
+                when(taskRepository.findById(1L))
+                                .thenReturn(Optional.of(task));
+
+                when(taskRepository.save(any(Task.class)))
+                                .thenReturn(task);
+
+                mockMvc.perform(put("/partial_update/1/")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("""
+                                                {
+                                                  "title":"Updated",
+                                                  "status":"Sone",
+                                                  "author":"Syeda",
+                                                  "description":"Testing Updated"
+                                                }
+                                                """))
+                                .andDo(result -> {
+                                        System.out.println("STATUS: " + result.getResponse().getStatus());
+                                        System.out.println("BODY: " + result.getResponse().getContentAsString());
+                                        System.out.println("ERROR: " + result.getResolvedException());
+                                })
+                                .andExpect(status().isOk());
+
+                verify(taskRepository).save(any(Task.class));
         }
 }
